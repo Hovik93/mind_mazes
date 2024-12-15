@@ -42,6 +42,15 @@ dependencies:
 
   flutter_launcher_icons: ^0.14.1
 
+  in_app_review: ^2.0.9
+
+  flutter_native_splash: ^2.4.1
+
+  flutter_animate: ^4.5.2
+
+  smooth_page_indicator: ^1.1.0
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -61,6 +70,12 @@ flutter_icons:
   min_sdk_android: 24 # android min sdk min:16, default 21
   adaptive_icon_background: "#ffffff" # You can use a color or image for the background
   adaptive_icon_foreground: "assets/logo.png" # For adaptive icons on Android
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+  color: "#D9B8F3"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

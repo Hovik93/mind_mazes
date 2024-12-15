@@ -36,11 +36,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _checkOnboardingStatus() async {
     bool onboardingSeen = await DataStorage.isOnboardingSeen();
     if (onboardingSeen) {
-      Navigator.pushReplacementNamed(
-          context, '/home'); // Если просмотрено, сразу на главный экран
+      Navigator.pushReplacementNamed(context, '/home');
     } else {
-      Navigator.pushReplacementNamed(
-          context, '/onBoarding'); // Если нет, на онбординг
+      Navigator.pushReplacementNamed(context, '/onBoarding');
     }
   }
 
@@ -49,8 +47,8 @@ class _SplashScreenState extends State<SplashScreen> {
     final TextTheme theme = Theme.of(context).textTheme;
     return Scaffold(
       body: AnimatedContainer(
-        duration: const Duration(seconds: 2), // Длительность анимации
-        curve: Curves.easeInOut, // Плавная кривая анимации
+        duration: const Duration(seconds: 2),
+        curve: Curves.easeInOut,
         color: backgroundColor,
         child: Center(
           child: Padding(

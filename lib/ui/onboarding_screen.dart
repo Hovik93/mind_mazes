@@ -45,8 +45,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   void _skipOnboarding() async {
     await DataStorage.setOnboardingSeen();
-    Navigator.pushReplacementNamed(
-        context, '/home'); // Переход на главный экран
+    Navigator.pushReplacementNamed(context, '/home');
   }
 
   @override
@@ -89,8 +88,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ],
                 ),
               ),
-
-              // Изображение и текст
               Expanded(
                 flex: 35,
                 child: Column(
@@ -129,7 +126,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ],
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(

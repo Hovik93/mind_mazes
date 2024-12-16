@@ -27,6 +27,23 @@ class _HomePageState extends State<HomePage> {
   bool showQuiz = false;
   bool showDecisionChains = false;
 
+  bool _cognitiveExpanded = false;
+  bool _paradoxesExpanded = false;
+
+  void _closeAllMainSections() {
+    _isExpandedLime = false;
+    _isExpandedLavender = false;
+    _isExpandedPastelBlue = false;
+    showEducation = false;
+    showQuiz = false;
+    showDecisionChains = false;
+  }
+
+  void _closeAllSubSections() {
+    _cognitiveExpanded = false;
+    _paradoxesExpanded = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextTheme theme = Theme.of(context).textTheme;
@@ -50,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       'Mind Mazes',
                       style: theme.bodySmall
-                          ?.copyWith(fontSize: 40, color: AppColors.black),
+                          ?.copyWith(fontSize: 40.sp, color: AppColors.black),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -82,6 +99,12 @@ class _HomePageState extends State<HomePage> {
                 title: 'Когнитивные искажения',
                 content:
                     'Это систематические ошибки в восприятии, интерпретации и обработке информации, которые влияют на наши решения и суждения. Эти искажения могут приводить к неправильным выводам, несправедливым решениям или даже ошибочным действиям.',
+                onTapClose: () {
+                  setState(() {
+                    _closeAllMainSections();
+                    _cognitiveExpanded = !_cognitiveExpanded;
+                  });
+                },
                 onTap: () {
                   Navigator.push(
                     context,
@@ -92,6 +115,7 @@ class _HomePageState extends State<HomePage> {
                     }),
                   );
                 },
+                isExpanded: _cognitiveExpanded,
               ),
               SizedBox(height: 10),
               CollapsibleCard(
@@ -108,6 +132,13 @@ class _HomePageState extends State<HomePage> {
                     }),
                   );
                 },
+                onTapClose: () {
+                  setState(() {
+                    _closeAllMainSections();
+                    _paradoxesExpanded = !_paradoxesExpanded;
+                  });
+                },
+                isExpanded: _paradoxesExpanded,
               ),
             ],
           ),
@@ -116,10 +147,11 @@ class _HomePageState extends State<HomePage> {
               GestureDetector(
                 onTap: () {
                   setState(() {
+                    _closeAllSubSections();
                     _isExpandedLime = !_isExpandedLime;
                   });
                   Future.delayed(
-                    const Duration(milliseconds: 300),
+                    const Duration(milliseconds: 0),
                     () {
                       if (mounted) {
                         showEducation = !showEducation;
@@ -129,9 +161,9 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
                 child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 0),
                   curve: Curves.easeInOut,
-                  height: _isExpandedLime ? 160.w : 62.w,
+                  height: _isExpandedLime ? 150.w : 62.w,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: AppColors.lime,
@@ -146,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
-                          vertical: 20,
+                          vertical: 15,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -186,7 +218,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       if (showEducation)
                         AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 300),
+                          duration: const Duration(milliseconds: 0),
                           child: _isExpandedLime
                               ? Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -210,17 +242,18 @@ class _HomePageState extends State<HomePage> {
                     right: 0,
                     child: Container(
                       width: 200,
-                      height: _isExpandedLavender ? 160.w : 62.w,
+                      height: _isExpandedLavender ? 150.w : 62.w,
                       color: AppColors.lime,
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
                       setState(() {
+                        _closeAllSubSections();
                         _isExpandedLavender = !_isExpandedLavender;
                       });
                       Future.delayed(
-                        const Duration(milliseconds: 300),
+                        const Duration(milliseconds: 0),
                         () {
                           if (mounted) {
                             showQuiz = !showQuiz;
@@ -230,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                     child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 0),
                       height: _isExpandedLavender ? 140.w : 62.w,
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -246,7 +279,7 @@ class _HomePageState extends State<HomePage> {
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 20,
-                              vertical: 20,
+                              vertical: 15,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -283,7 +316,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           if (showQuiz)
                             AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 300),
+                              duration: const Duration(milliseconds: 0),
                               child: _isExpandedLavender
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -309,17 +342,18 @@ class _HomePageState extends State<HomePage> {
                     right: 0,
                     child: Container(
                       width: 200,
-                      height: _isExpandedPastelBlue ? 160.w : 82.w,
+                      height: _isExpandedPastelBlue ? 150.w : 82.w,
                       color: AppColors.lavender,
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
                       setState(() {
+                        _closeAllSubSections();
                         _isExpandedPastelBlue = !_isExpandedPastelBlue;
                       });
                       Future.delayed(
-                        const Duration(milliseconds: 300),
+                        const Duration(milliseconds: 0),
                         () {
                           if (mounted) {
                             showDecisionChains = !showDecisionChains;
@@ -329,8 +363,8 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                     child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      height: _isExpandedPastelBlue ? 200.w : 82.w,
+                      duration: const Duration(milliseconds: 0),
+                      height: _isExpandedPastelBlue ? 190.w : 82.w,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppColors.pastelBlue,
@@ -345,7 +379,7 @@ class _HomePageState extends State<HomePage> {
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 20,
-                              vertical: 20,
+                              vertical: 15,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -382,7 +416,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           if (showDecisionChains)
                             AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 300),
+                              duration: const Duration(milliseconds: 0),
                               child: _isExpandedPastelBlue
                                   ? Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -413,12 +447,16 @@ class CollapsibleCard extends StatefulWidget {
   final String title;
   final String content;
   void Function() onTap;
+  final VoidCallback onTapClose;
+  final bool isExpanded;
 
   CollapsibleCard({
     super.key,
     required this.title,
     required this.content,
     required this.onTap,
+    required this.onTapClose,
+    required this.isExpanded,
   });
 
   @override
@@ -426,18 +464,13 @@ class CollapsibleCard extends StatefulWidget {
 }
 
 class _CollapsibleCardState extends State<CollapsibleCard> {
-  bool _isExpanded = false;
-
   @override
   Widget build(BuildContext context) {
+    final TextTheme theme = Theme.of(context).textTheme;
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _isExpanded = !_isExpanded;
-        });
-      },
+      onTap: widget.onTapClose,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 0),
         curve: Curves.easeInOut,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         decoration: BoxDecoration(
@@ -445,7 +478,7 @@ class _CollapsibleCardState extends State<CollapsibleCard> {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Colors.grey.shade300, width: 1),
           boxShadow: [
-            if (_isExpanded)
+            if (widget.isExpanded)
               BoxShadow(
                 color: Colors.grey.shade200,
                 blurRadius: 8,
@@ -460,24 +493,22 @@ class _CollapsibleCardState extends State<CollapsibleCard> {
               children: [
                 Text(
                   widget.title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: theme.titleSmall
+                      ?.copyWith(color: AppColors.black, fontSize: 18.sp),
                 ),
                 GestureDetector(
                   onTap: widget.onTap,
                   child: AnimatedRotation(
-                    turns: _isExpanded ? 0.0 : 0.0,
-                    duration: const Duration(milliseconds: 300),
-                    child: Image.asset(!_isExpanded
+                    turns: widget.isExpanded ? 0.0 : 0.0,
+                    duration: const Duration(milliseconds: 0),
+                    child: Image.asset(!widget.isExpanded
                         ? AppImages.arrowRightDown
                         : AppImages.arrowRightUp),
                   ),
                 ),
               ],
             ),
-            if (_isExpanded)
+            if (widget.isExpanded)
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(

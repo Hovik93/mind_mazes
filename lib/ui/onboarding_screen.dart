@@ -54,100 +54,117 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                flex: 65,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _currentIndex != 2
-                        ? Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: GestureDetector(
-                                onTap: _skipOnboarding,
-                                child: Text(
-                                  "Пропустить",
-                                  style: theme.bodySmall?.copyWith(
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: AppColors.grey2,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        : SizedBox(),
-                    Image.asset(
-                      _onBoardingData[_currentIndex]['image']!,
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 35,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 50),
-                    Text("Mind Mazes", style: theme.headlineLarge),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (_currentIndex != _onBoardingData.length - 1)
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 25),
-                      child: Text(
-                        _onBoardingData[_currentIndex]['text']!,
-                        style: theme.titleSmall,
-                      ),
-                    ),
-                    Spacer(),
-                    GestureDetector(
-                      onTap: _nextPage,
-                      child: Container(
-                        width: double.infinity,
-                        height: 48.w,
-                        margin: EdgeInsets.only(bottom: 15),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            color: AppColors.primary),
-                        child: Center(
+                      padding: EdgeInsets.only(top: 10.w, right: 20.w),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: GestureDetector(
+                          onTap: _skipOnboarding,
                           child: Text(
-                            _currentIndex == _onBoardingData.length - 1
-                                ? "Начать"
-                                : "Далее",
+                            "Пропустить",
                             style: theme.bodySmall?.copyWith(
-                                color: AppColors.white, fontSize: 18),
+                              decoration: TextDecoration.underline,
+                              color: AppColors.grey2,
+                              fontSize: 14.sp,
+                            ),
                           ),
                         ),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  SizedBox(height: 40.w),
+                  Expanded(
+                    child: Image.asset(
+                      _onBoardingData[_currentIndex]['image']!,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  SizedBox(height: 40.w),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      'Условия использования',
-                      style: theme.titleSmall?.copyWith(fontSize: 9),
+            ),
+
+            
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Mind Mazes",
+                    style: theme.headlineLarge?.copyWith(
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Text(
-                      "|",
-                      style: TextStyle(color: AppColors.primary),
+                  ),
+                  SizedBox(height: 10.w), 
+                  Text(
+                    _onBoardingData[_currentIndex]['text']!,
+                    style: theme.titleSmall?.copyWith(
+                      fontSize: 14.sp,
+                      color: AppColors.grey2,
                     ),
-                    Text(
-                      'Политика конфиденциальности',
-                      style: theme.titleSmall?.copyWith(fontSize: 9),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20.w), 
+                  GestureDetector(
+                    onTap: _nextPage,
+                    child: Container(
+                      width: double.infinity,
+                      height: 48.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: AppColors.primary,
+                      ),
+                      child: Center(
+                        child: Text(
+                          _currentIndex == _onBoardingData.length - 1
+                              ? "Начать"
+                              : "Далее",
+                          style: theme.bodySmall?.copyWith(
+                            color: AppColors.white,
+                            fontSize: 18.sp,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10.w),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Условия использования',
+                        style: theme.titleSmall?.copyWith(fontSize: 10.sp),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        child: Text(
+                          "|",
+                          style: TextStyle(
+                            color: AppColors.primary,
+                            fontSize: 10.sp,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Политика конфиденциальности',
+                        style: theme.titleSmall?.copyWith(fontSize: 10.sp),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10.w), 
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

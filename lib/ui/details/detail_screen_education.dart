@@ -47,7 +47,7 @@ class DetailScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 20.w),
               _buildSection(
                 title: detailData['title'] ?? '',
                 content: detailData['description'] ?? '',
@@ -66,7 +66,7 @@ class DetailScreen extends StatelessWidget {
                   points: detailData['howToAvoid'],
                   theme: theme,
                 ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 20.w),
               if (randomItem != null)
                 _buildSeeAlsoSection(context, randomItem, theme),
             ],
@@ -92,7 +92,7 @@ class DetailScreen extends StatelessWidget {
     required TextTheme theme,
   }) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.w),
       padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: AppColors.lime.withOpacity(0.1),
@@ -134,7 +134,7 @@ class DetailScreen extends StatelessWidget {
               color: AppColors.grey2,
             ),
           ),
-          SizedBox(height: 8.h),
+          SizedBox(height: 8.w),
           _buildBulletPoints(points: points, theme: theme),
         ],
       ),
@@ -148,7 +148,7 @@ class DetailScreen extends StatelessWidget {
     bool highlight = false,
   }) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.w),
       padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
           color: highlight ? AppColors.lime : AppColors.lime.withOpacity(0.1),
@@ -164,7 +164,7 @@ class DetailScreen extends StatelessWidget {
               color: highlight ? AppColors.black : AppColors.grey1,
             ),
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: 10.w),
           Text(
             highlight ? "- ${content}" : content,
             style: theme.bodySmall,
@@ -179,7 +179,7 @@ class DetailScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: points.map((point) {
         return Padding(
-          padding: EdgeInsets.only(bottom: 8.h),
+          padding: EdgeInsets.only(bottom: 8.w),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -211,7 +211,7 @@ class DetailScreen extends StatelessWidget {
             "Смотрите также",
             style: theme.titleSmall,
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: 10.w),
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -235,6 +235,7 @@ class DetailScreen extends StatelessWidget {
                 children: [
                   Text(
                     randomItem['title'] ?? '',
+                    overflow: TextOverflow.ellipsis,
                     style: theme.bodyMedium?.copyWith(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,

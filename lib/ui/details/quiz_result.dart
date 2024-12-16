@@ -67,7 +67,7 @@ class _QuizResultPageState extends State<QuizResultPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 5.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -89,8 +89,8 @@ class _QuizResultPageState extends State<QuizResultPage> {
                     thickness: 1,
                     color: AppColors.lavender,
                   ),
-                  const SizedBox(
-                    height: 15,
+                  SizedBox(
+                    height: 10.w,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -168,7 +168,7 @@ class _QuizResultPageState extends State<QuizResultPage> {
             ),
             Expanded(
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.w),
+                margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.w),
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
                   color: (widget.userAnswers[selectedQuestionIndex] + 1 ==
@@ -262,7 +262,7 @@ class _QuizResultPageState extends State<QuizResultPage> {
             fontSize: 18.sp,
           ),
         ),
-        SizedBox(height: 10.h),
+        SizedBox(height: 10.w),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -302,7 +302,7 @@ class _QuizResultPageState extends State<QuizResultPage> {
             ),
           ],
         ),
-        SizedBox(height: 10.h),
+        SizedBox(height: 10.w),
         Text(
           question['explanation'],
           style: theme.titleSmall?.copyWith(color: AppColors.black),

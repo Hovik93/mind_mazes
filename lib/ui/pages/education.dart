@@ -158,7 +158,7 @@ class _EducationScreenState extends State<EducationScreen> {
                 final item = filteredList[index];
                 return Container(
                   height: 56.w,
-                  margin: EdgeInsets.only(bottom: 12.h),
+                  margin: EdgeInsets.only(bottom: 12.w),
                   padding:
                       EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                   decoration: BoxDecoration(
@@ -169,11 +169,14 @@ class _EducationScreenState extends State<EducationScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        item['title'],
-                        style: theme.titleSmall?.copyWith(
-                          fontSize: 16.sp,
-                          color: AppColors.black,
+                      Flexible(
+                        child: Text(
+                          item['title'],
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.titleSmall?.copyWith(
+                            fontSize: 16.sp,
+                            color: AppColors.black,
+                          ),
                         ),
                       ),
                       GestureDetector(

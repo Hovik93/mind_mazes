@@ -122,7 +122,7 @@ class _DecisionChainsScreenState extends State<DecisionChainsScreen> {
                     final chain = filteredDecisionChains[index];
 
                     return Container(
-                      margin: EdgeInsets.only(bottom: 16.h),
+                      margin: EdgeInsets.only(bottom: 16.w),
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
                         color: AppColors.primary.withOpacity(0.1),

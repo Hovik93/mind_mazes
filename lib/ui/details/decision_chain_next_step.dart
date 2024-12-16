@@ -59,7 +59,7 @@ class _DecisionChainNextStepScreenState
                 ),
               ),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 20.w),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(
@@ -69,7 +69,7 @@ class _DecisionChainNextStepScreenState
                     "Этап 2",
                     style: theme.titleSmall,
                   ),
-                  SizedBox(height: 10.h),
+                  SizedBox(height: 10.w),
                   Text(
                     widget.fullData['title'] ?? '',
                     style: theme.titleSmall?.copyWith(
@@ -77,7 +77,7 @@ class _DecisionChainNextStepScreenState
                       color: AppColors.black,
                     ),
                   ),
-                  SizedBox(height: 10.h),
+                  SizedBox(height: 10.w),
                   Text(
                     widget.nextStepData['description'] ??
                         "Вы столкнулись с убытками. Как поступить дальше?",
@@ -85,7 +85,7 @@ class _DecisionChainNextStepScreenState
                       color: AppColors.black,
                     ),
                   ),
-                  SizedBox(height: 10.h),
+                  SizedBox(height: 10.w),
                   Divider(
                     height: 1,
                     thickness: 1,
@@ -94,7 +94,7 @@ class _DecisionChainNextStepScreenState
                 ],
               ),
             ),
-            SizedBox(height: 10.h),
+            SizedBox(height: 10.w),
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -109,7 +109,7 @@ class _DecisionChainNextStepScreenState
                       });
                     },
                     child: Container(
-                      margin: EdgeInsets.only(bottom: 16.h),
+                      margin: EdgeInsets.only(bottom: 16.w),
                       padding: EdgeInsets.all(12.w),
                       decoration: BoxDecoration(
                         color: selectedOptionIndex == index
@@ -134,7 +134,7 @@ class _DecisionChainNextStepScreenState
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          SizedBox(height: 5.h),
+                          SizedBox(height: 5.w),
                           Text(
                             choice['result'],
                             style: theme.bodySmall?.copyWith(
@@ -245,7 +245,7 @@ class _DecisionChainNextStepScreenState
                     ),
                   ),
                 ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 20.w),
               ],
             ),
           ],

@@ -93,7 +93,7 @@ class _QuizDetailsState extends State<QuizDetails> {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.w),
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.w),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

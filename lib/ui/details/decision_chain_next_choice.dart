@@ -59,7 +59,7 @@ class _DecisionChainNextChoiceScreenState
                 ),
               ),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 20.w),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Text(
@@ -67,7 +67,7 @@ class _DecisionChainNextChoiceScreenState
                 style: theme.titleSmall,
               ),
             ),
-            SizedBox(height: 10.h),
+            SizedBox(height: 10.w),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 16.w),
               padding: EdgeInsets.all(12.w),
@@ -87,7 +87,7 @@ class _DecisionChainNextChoiceScreenState
                       color: AppColors.black,
                     ),
                   ),
-                  SizedBox(height: 10.h),
+                  SizedBox(height: 10.w),
                   Text(
                     widget.selectedData['result'],
                     style: theme.titleSmall?.copyWith(
@@ -136,7 +136,7 @@ class _DecisionChainNextChoiceScreenState
                 ],
               ),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 20.w),
             Expanded(
               child: ListView.builder(
                 itemCount: nextSteps.length,
@@ -199,7 +199,7 @@ class _DecisionChainNextChoiceScreenState
                           if (isSelected)
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: 12.w, right: 12.w, bottom: 12.h),
+                                  left: 12.w, right: 12.w, bottom: 12.w),
                               child: Text(
                                 step,
                                 style: theme.bodySmall,

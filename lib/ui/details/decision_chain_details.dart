@@ -51,7 +51,7 @@ class _DecisionChainDetailsState extends State<DecisionChainDetails> {
                 ),
               ),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 20.w),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(
@@ -84,7 +84,7 @@ class _DecisionChainDetailsState extends State<DecisionChainDetails> {
                 ],
               ),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 20.w),
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -99,7 +99,7 @@ class _DecisionChainDetailsState extends State<DecisionChainDetails> {
                       });
                     },
                     child: Container(
-                      margin: EdgeInsets.only(bottom: 16.h),
+                      margin: EdgeInsets.only(bottom: 16.w),
                       padding: EdgeInsets.all(12.w),
                       decoration: BoxDecoration(
                         border: Border(
@@ -123,7 +123,7 @@ class _DecisionChainDetailsState extends State<DecisionChainDetails> {
                             ],
                           ),
                           if (selectedOptionIndex == index) ...[
-                            SizedBox(height: 10.h),
+                            SizedBox(height: 10.w),
                             Text(
                               option['option'],
                               style: theme.bodySmall,
@@ -149,7 +149,7 @@ class _DecisionChainDetailsState extends State<DecisionChainDetails> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 10.w),
                 selectedOptionIndex != null
                     ? Container(
                         margin: EdgeInsets.symmetric(horizontal: 16.w),
@@ -167,7 +167,7 @@ class _DecisionChainDetailsState extends State<DecisionChainDetails> {
                               "Выбор ${String.fromCharCode(65 + selectedOptionIndex!)} — Эффект привязанности",
                               style: theme.bodySmall,
                             ),
-                            SizedBox(height: 10.h),
+                            SizedBox(height: 10.w),
                             Text(
                               options[selectedOptionIndex!]['branch']['result'],
                               style:

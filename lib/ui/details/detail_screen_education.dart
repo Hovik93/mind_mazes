@@ -22,55 +22,65 @@ class DetailScreen extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BottomBorderContainer(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 20.w, left: 16.w, bottom: 15.w),
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () => Navigator.pop(context),
-                        child: Icon(Icons.arrow_back_ios_new,
-                            color: AppColors.grey2),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BottomBorderContainer(
+              child: Padding(
+                padding: EdgeInsets.only(top: 20.w, left: 16.w, bottom: 15.w),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () => Navigator.pop(context),
+                      child: Icon(Icons.arrow_back_ios_new,
+                          color: AppColors.grey2),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        detailData['title'] ?? '',
+                        style: theme.bodySmall?.copyWith(fontSize: 17.sp),
                       ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          detailData['title'] ?? '',
-                          style: theme.bodySmall?.copyWith(fontSize: 17.sp),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 20.w),
-              _buildSection(
-                title: detailData['title'] ?? '',
-                content: detailData['description'] ?? '',
-                theme: theme,
-                highlight: true,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20.w),
+                    _buildSection(
+                      title: detailData['title'] ?? '',
+                      content: detailData['description'] ?? '',
+                      theme: theme,
+                      highlight: true,
+                    ),
+                    if (detailData['example'] != null)
+                      _buildSection(
+                        title: "Пример:",
+                        content: detailData['example'],
+                        theme: theme,
+                      ),
+                    if (detailData['howToAvoid'] != null)
+                      _buildAvoidSection(
+                        intro: detailData['howToAvoidTitle'] ?? '',
+                        points: detailData['howToAvoid'],
+                        theme: theme,
+                      ),
+                    SizedBox(height: 20.w),
+                    if (randomItem != null)
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 20.w),
+                        child: _buildSeeAlsoSection(context, randomItem, theme),
+                      ),
+                  ],
+                ),
               ),
-              if (detailData['example'] != null)
-                _buildSection(
-                  title: "Пример:",
-                  content: detailData['example'],
-                  theme: theme,
-                ),
-              if (detailData['howToAvoid'] != null)
-                _buildAvoidSection(
-                  intro: detailData['howToAvoidTitle'] ?? '',
-                  points: detailData['howToAvoid'],
-                  theme: theme,
-                ),
-              SizedBox(height: 20.w),
-              if (randomItem != null)
-                _buildSeeAlsoSection(context, randomItem, theme),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

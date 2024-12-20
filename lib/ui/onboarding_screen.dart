@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mind_mazes/base/colors.dart';
+import 'package:mind_mazes/base/constants.dart';
 import 'package:mind_mazes/base/images.dart';
 import 'package:mind_mazes/ui/data_storage.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -48,6 +50,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     Navigator.pushReplacementNamed(context, '/home');
   }
 
+  _launchURL({required String urlLink}) async {
+    final Uri url = Uri.parse(urlLink);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextTheme theme = Theme.of(context).textTheme;
@@ -90,8 +99,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ],
               ),
             ),
-
-            
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
@@ -104,7 +111,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 10.w), 
+                  SizedBox(height: 10.w),
                   Text(
                     _onBoardingData[_currentIndex]['text']!,
                     style: theme.titleSmall?.copyWith(
@@ -113,7 +120,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 20.w), 
+                  SizedBox(height: 20.w),
                   GestureDetector(
                     onTap: _nextPage,
                     child: Container(
@@ -140,9 +147,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'Условия использования',
-                        style: theme.titleSmall?.copyWith(fontSize: 10.sp),
+                      InkWell(
+                        onTap: () {
+                          _launchURL(urlLink: userAgreementUrl);
+                        },
+                        child: Text(
+                          'Условия использования',
+                          style: theme.titleSmall?.copyWith(fontSize: 10.sp),
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 5.w),
@@ -154,13 +166,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           ),
                         ),
                       ),
-                      Text(
-                        'Политика конфиденциальности',
-                        style: theme.titleSmall?.copyWith(fontSize: 10.sp),
+                      InkWell(
+                        onTap: () {
+                          _launchURL(urlLink: privacyPolicyUrl);
+                        },
+                        child: Text(
+                          'Политика конфиденциальности',
+                          style: theme.titleSmall?.copyWith(fontSize: 10.sp),
+                        ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10.w), 
+                  SizedBox(height: 10.w),
                 ],
               ),
             ),

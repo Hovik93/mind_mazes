@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'ColorMatch Inventory',
+            title: 'Mind Mazes',
             theme: lightTheme,
             home: const SplashScreen(),
             routes: routes,

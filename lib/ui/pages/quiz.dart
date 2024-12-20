@@ -35,7 +35,7 @@ class _QuizScreenState extends State<QuizScreen> {
     return Scaffold(
       body: TapRegion(
         onTapOutside: (event) {
-          FocusManager.instance.primaryFocus?.unfocus(); // Закрыть клавиатуру
+          FocusManager.instance.primaryFocus?.unfocus(); 
         },
         child: body(theme: theme),
       ),

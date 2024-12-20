@@ -169,7 +169,7 @@ class _QuizResultPageState extends State<QuizResultPage> {
             Expanded(
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.w),
-                padding: EdgeInsets.all(16.w),
+                padding: EdgeInsets.all(15.w),
                 decoration: BoxDecoration(
                   color: (widget.userAnswers[selectedQuestionIndex] + 1 ==
                           widget.quizData['questions'][selectedQuestionIndex]
@@ -253,61 +253,63 @@ class _QuizResultPageState extends State<QuizResultPage> {
 
     final isCorrect = userAnswer == question['correctAnswer'];
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "${question['number']}",
-          style: theme.titleSmall?.copyWith(
-            fontSize: 18.sp,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "${question['number']}",
+            style: theme.titleSmall?.copyWith(
+              fontSize: 18.sp,
+            ),
           ),
-        ),
-        SizedBox(height: 10.w),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Ваш ответ: ",
-              style: theme.titleSmall,
-            ),
-            Expanded(
-              child: Text(
-                "${userAnswer}. ${question['options'][userAnswer - 1]}",
-                style: theme.titleSmall?.copyWith(color: AppColors.black),
+          SizedBox(height: 10.w),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Ваш ответ: ",
+                style: theme.titleSmall,
               ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Divider(
-            height: 1,
-            thickness: 1,
-            color: isCorrect ? AppColors.green : AppColors.red,
+              Expanded(
+                child: Text(
+                  "${userAnswer}. ${question['options'][userAnswer - 1]}",
+                  style: theme.titleSmall?.copyWith(color: AppColors.black),
+                ),
+              ),
+            ],
           ),
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Правильный ответ:",
-              style: theme.titleSmall,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5),
+            child: Divider(
+              height: 1,
+              thickness: 1,
+              color: isCorrect ? AppColors.green : AppColors.red,
             ),
-            SizedBox(width: 10.w),
-            Expanded(
-              child: Text(
-                "${question['correctAnswer']}",
-                style: theme.titleSmall?.copyWith(color: AppColors.black),
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Правильный ответ:",
+                style: theme.titleSmall,
               ),
-            ),
-          ],
-        ),
-        SizedBox(height: 10.w),
-        Text(
-          question['explanation'],
-          style: theme.titleSmall?.copyWith(color: AppColors.black),
-        ),
-      ],
+              SizedBox(width: 10.w),
+              Expanded(
+                child: Text(
+                  "${question['correctAnswer']}",
+                  style: theme.titleSmall?.copyWith(color: AppColors.black),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10.w),
+          Text(
+            question['explanation'],
+            style: theme.titleSmall?.copyWith(color: AppColors.black),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -32,148 +32,151 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget body({required TextTheme theme}) {
-    return Column(
-      children: [
-        BottomBorderContainer(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 70, left: 30, bottom: 15),
-            child: Row(
+    return SafeArea(
+      child: Column(
+        children: [
+          BottomBorderContainer(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10, left: 30, bottom: 15),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child:
+                        Icon(Icons.arrow_back_ios_new, color: AppColors.grey2),
+                  ),
+                  const SizedBox(width: 10),
+                  Text(
+                    'Настройки',
+                    style: theme.bodySmall?.copyWith(
+                      fontSize: 17,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 30.w,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Column(
               children: [
-                GestureDetector(
+                InkWell(
                   onTap: () {
-                    Navigator.pop(context);
+                    _launchURL(urlLink: privacyPolicyUrl);
                   },
-                  child: Icon(Icons.arrow_back_ios_new, color: AppColors.grey2),
+                  child: Container(
+                    height: 56.w,
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: AppColors.greyLight,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Политика конфиденциальности',
+                          style: theme.bodySmall
+                              ?.copyWith(color: AppColors.black, fontSize: 15),
+                        ),
+                        Icon(
+                          Icons.arrow_right,
+                          color: AppColors.primary,
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-                const SizedBox(width: 10),
-                Text(
-                  'Настройки',
-                  style: theme.bodySmall?.copyWith(
-                    fontSize: 17,
+                SizedBox(
+                  height: 15.w,
+                ),
+                InkWell(
+                  onTap: () {
+                    _launchURL(urlLink: userAgreementUrl);
+                  },
+                  child: Container(
+                    height: 56.w,
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: AppColors.greyLight,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Пользовательское соглашение',
+                          style: theme.bodySmall
+                              ?.copyWith(color: AppColors.black, fontSize: 15),
+                        ),
+                        Icon(
+                          Icons.arrow_right,
+                          color: AppColors.primary,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.w,
+                ),
+                Divider(
+                  color: AppColors.greyLight,
+                ),
+                SizedBox(
+                  height: 5.w,
+                ),
+                InkWell(
+                  onTap: () async {
+                    if (await inAppReview.isAvailable()) {
+                      inAppReview.requestReview();
+                    }
+                  },
+                  child: Container(
+                    height: 56.w,
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: AppColors.greyLight,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Оценить приложение',
+                          style: theme.bodySmall
+                              ?.copyWith(color: AppColors.black, fontSize: 15),
+                        ),
+                        Icon(
+                          Icons.arrow_right,
+                          color: AppColors.primary,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
-          ),
-        ),
-        const SizedBox(
-          height: 50,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Column(
-            children: [
-              InkWell(
-                onTap: () {
-                  _launchURL(urlLink: privacyPolicyUrl);
-                },
-                child: Container(
-                  height: 56.w,
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: AppColors.greyLight,
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Политика конфиденциальности',
-                        style: theme.bodySmall
-                            ?.copyWith(color: AppColors.black, fontSize: 15),
-                      ),
-                      Icon(
-                        Icons.arrow_right,
-                        color: AppColors.primary,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 15.w,
-              ),
-              InkWell(
-                onTap: () {
-                  _launchURL(urlLink: userAgreementUrl);
-                },
-                child: Container(
-                  height: 56.w,
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: AppColors.greyLight,
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Пользовательское соглашение',
-                        style: theme.bodySmall
-                            ?.copyWith(color: AppColors.black, fontSize: 15),
-                      ),
-                      Icon(
-                        Icons.arrow_right,
-                        color: AppColors.primary,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 5.w,
-              ),
-              Divider(
-                color: AppColors.greyLight,
-              ),
-              SizedBox(
-                height: 5.w,
-              ),
-              InkWell(
-                onTap: () async {
-                  if (await inAppReview.isAvailable()) {
-                    inAppReview.requestReview();
-                  }
-                },
-                child: Container(
-                  height: 56.w,
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: AppColors.greyLight,
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Оценить приложение',
-                        style: theme.bodySmall
-                            ?.copyWith(color: AppColors.black, fontSize: 15),
-                      ),
-                      Icon(
-                        Icons.arrow_right,
-                        color: AppColors.primary,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

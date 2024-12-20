@@ -16,6 +16,7 @@ class EducationScreen extends StatefulWidget {
 class _EducationScreenState extends State<EducationScreen> {
   List<Map<String, dynamic>> filteredList = [];
   final TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
     filteredList = widget.data;
@@ -37,7 +38,7 @@ class _EducationScreenState extends State<EducationScreen> {
     return Scaffold(
       body: TapRegion(
         onTapOutside: (event) {
-          FocusManager.instance.primaryFocus?.unfocus(); // Закрыть клавиатуру
+          FocusManager.instance.primaryFocus?.unfocus();
         },
         child: body(theme: theme),
       ),
@@ -72,142 +73,148 @@ class _EducationScreenState extends State<EducationScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 20.w,
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 16.w),
-            padding: EdgeInsets.all(12.w),
-            decoration: BoxDecoration(
-              color: AppColors.lime.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Когнитивные искажения и парадоксы",
-                  style: theme.titleSmall?.copyWith(
-                    color: AppColors.black,
-                    fontSize: 17.sp,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                    "— это важная часть нашего мышления, которую мы часто не замечаем. "
-                    "Изучение этих ловушек помогает научиться принимать более обоснованные решения, анализировать ситуации и избегать ошибок в будущем.",
-                    style: theme.titleSmall),
-              ],
-            ),
-          ),
-          SizedBox(height: 20.h),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: TextField(
-              controller: _searchController,
-              onChanged: _filterCognitiveBiases,
-              decoration: InputDecoration(
-                prefixIcon: Image.asset(
-                  AppImages.searchIcon,
-                  color: AppColors.lime,
-                ),
-                hintText: "Искать",
-                hintStyle: theme.titleSmall,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide(color: AppColors.grey1),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide(color: AppColors.grey1),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide(color: AppColors.lime),
-                ),
-                filled: true,
-                fillColor: AppColors.white,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 10.w,
-                  horizontal: 12.w,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 15.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Когнитивные искажения",
-                  style: theme.titleSmall
-                      ?.copyWith(fontSize: 12.sp, color: AppColors.black),
-                ),
-                Image.asset(AppImages.refreshCircle)
-              ],
-            ),
-          ),
           Expanded(
-            child: ListView.builder(
-              itemCount: filteredList.length,
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              itemBuilder: (context, index) {
-                final item = filteredList[index];
-                return Container(
-                  height: 56.w,
-                  margin: EdgeInsets.only(bottom: 12.w),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: AppColors.lime),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          item['title'],
-                          overflow: TextOverflow.ellipsis,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20.w),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 16.w),
+                    padding: EdgeInsets.all(12.w),
+                    decoration: BoxDecoration(
+                      color: AppColors.lime.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Когнитивные искажения и парадоксы",
                           style: theme.titleSmall?.copyWith(
-                            fontSize: 16.sp,
                             color: AppColors.black,
+                            fontSize: 17.sp,
                           ),
                         ),
+                        SizedBox(height: 10),
+                        Text(
+                            "— это важная часть нашего мышления, которую мы часто не замечаем. "
+                            "Изучение этих ловушек помогает научиться принимать более обоснованные решения, анализировать ситуации и избегать ошибок в будущем.",
+                            style: theme.titleSmall),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20.h),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: TextField(
+                      controller: _searchController,
+                      onChanged: _filterCognitiveBiases,
+                      decoration: InputDecoration(
+                        prefixIcon: Image.asset(
+                          AppImages.searchIcon,
+                          color: AppColors.lime,
+                        ),
+                        hintText: "Искать",
+                        hintStyle: theme.titleSmall,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(color: AppColors.grey1),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(color: AppColors.grey1),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(color: AppColors.lime),
+                        ),
+                        filled: true,
+                        fillColor: AppColors.white,
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 10.w,
+                          horizontal: 12.w,
+                        ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailScreen(
-                                detailData: item,
-                                allData: widget.data,
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 15.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Когнитивные искажения",
+                          style: theme.titleSmall?.copyWith(
+                              fontSize: 12.sp, color: AppColors.black),
+                        ),
+                        Image.asset(AppImages.refreshCircle)
+                      ],
+                    ),
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: filteredList.length,
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    itemBuilder: (context, index) {
+                      final item = filteredList[index];
+                      return Container(
+                        height: 56.w,
+                        margin: EdgeInsets.only(bottom: 12.w),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 10.h),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: AppColors.lime),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                item['title'],
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.titleSmall?.copyWith(
+                                  fontSize: 16.sp,
+                                  color: AppColors.black,
+                                ),
                               ),
                             ),
-                          );
-                        },
-                        child: Container(
-                          width: 20.w,
-                          height: 20.w,
-                          decoration: BoxDecoration(
-                            color: AppColors.lime,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            size: 16.sp,
-                          ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailScreen(
+                                      detailData: item,
+                                      allData: widget.data,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                width: 20.w,
+                                height: 20.w,
+                                decoration: BoxDecoration(
+                                  color: AppColors.lime,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.arrow_forward,
+                                  size: 16.sp,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
-                );
-              },
+                ],
+              ),
             ),
           ),
         ],
